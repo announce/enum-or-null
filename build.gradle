@@ -1,0 +1,67 @@
+
+/**
+ * https://guides.gradle.org/building-kotlin-jvm-libraries/
+ */
+buildscript {
+  ext.kotlin_version = "1.3.72"
+
+  dependencies {
+    classpath "io.spring.gradle:spring-bintray-plugin:0.11.1"
+  }
+
+  repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+
+  dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.17"
+  }
+}
+
+plugins {
+  id 'maven-publish'
+  id 'com.github.ben-manes.versions' version '0.20.0'
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'org.jetbrains.dokka'
+
+repositories {
+  mavenCentral()
+  jcenter()
+}
+
+dependencies {
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  testImplementation 'junit:junit:4.12'
+}
+
+dokka {
+  outputFormat = 'html'
+  outputDirectory = "$buildDir/javadoc"
+}
+javadoc.dependsOn dokka
+
+/**
+ * https://docs.gradle.org/5.0/dsl/org.gradle.api.publish.maven.MavenPublication.html
+ */
+publishing {
+  publications {
+    maven(MavenPublication) {
+      from components.java
+      groupId = 'io.github.announce'
+      artifactId = rootProject.name
+      version = '0.1.0'
+    }
+  }
+  repositories {
+    maven {
+      url = uri("$buildDir/repository")
+    }
+  }
+}
