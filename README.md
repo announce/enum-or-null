@@ -1,5 +1,7 @@
 # enum-or-null
 
+[ ![Download](https://api.bintray.com/packages/ymkjp/enum-or-null/enum-or-null-kt/images/download.svg) ](https://bintray.com/ymkjp/enum-or-null/enum-or-null-kt/_latestVersion)
+
 ### Why enum-or-null?
 
 In Kotlin, the `valueOf()` method throws an `IllegalArgumentException` if the specified name does not match any of the enum constants defined in the class.
@@ -9,17 +11,19 @@ This library provides a handy function `enumValueOrNull` to access to the define
 
 With Maven:
 
-```xml<dependency>
-    <groupId>o.github.announce</groupId>
-    <artifactId>enum-or-null-kt</artifactId>
-    <version>1.0.0</version>
+```xml
+<dependency>
+  <groupId>io.github.announce</groupId>
+  <artifactId>enum-or-null-kt</artifactId>
+  <version>1.x.x</version>
+  <type>pom</type>
 </dependency>
 ```
 
 With Gradle:
 
 ```groovy
-compile group: 'io.github.announce', name: 'enum-or-null-kt', version: '1.0.0'
+implementation 'io.github.announce:enum-or-null-kt:1.x.x'
 ```
 
 ### Usage
