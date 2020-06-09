@@ -1,5 +1,6 @@
 # enum-or-null
 
+[ ![Build Status](https://travis-ci.org/announce/enum-or-null.svg?branch=master) ](https://travis-ci.org/announce/enum-or-null)
 [ ![Download](https://api.bintray.com/packages/ymkjp/enum-or-null/enum-or-null-kt/images/download.svg) ](https://bintray.com/ymkjp/enum-or-null/enum-or-null-kt/_latestVersion)
 
 ### Why enum-or-null?
@@ -48,3 +49,6 @@ class Example {
 
 ### Development
 
+```shell script
+./gradlew clean build bintrayUpload
+```
