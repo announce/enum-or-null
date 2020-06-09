@@ -10,6 +10,8 @@ This library provides a handy function `enumValueOrNull` to access to the define
 
 ### Install
 
+The package is available via [jcenter](https://bintray.com/bintray/jcenter?filterByPkgName=enum-or-null-kt).
+
 With Maven:
 
 ```xml
@@ -54,7 +56,7 @@ class Example {
 Here's how to release the library:
 
 ```shell script
-# bintray
+# consider using direnv
 export BINTRAY_USER="ymkjp"
 export BINTRAY_KEY="__YOUR_KEY__"
 ./gradlew clean build bintrayUpload
