@@ -29,6 +29,8 @@ implementation 'io.github.announce:enum-or-null-kt:1.x.x'
 
 ### Usage
 
+A code using `enumValueOrNull` typically looks like the following:
+
 ```kotlin
 import io.github.announce.enumValueOrNull
 
@@ -49,6 +51,11 @@ class Example {
 
 ### Development
 
+Here's how to release the library:
+
 ```shell script
+# bintray
+export BINTRAY_USER="ymkjp"
+export BINTRAY_KEY="__YOUR_KEY__"
 ./gradlew clean build bintrayUpload
 ```
