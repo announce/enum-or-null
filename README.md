@@ -34,6 +34,8 @@ implementation 'io.github.announce:enum-or-null-kt:1.x.x'
 The code typically looks like the following:
 
 ```kotlin
+package io.github.announce
+
 class Example {
   enum class Direction(val az: Int) {
     NORTH(0),
@@ -43,26 +45,26 @@ class Example {
   }
 
   fun printAz01(name: String = "EAST") {
-    val direction = enumValueOrNull<Direction>(name) ?: Direction.NORTH
+    val direction = enumValueOrNull<Direction>(name) ?: Direction.EAST
     println("az01=${direction.az}")
   }
 
   fun printAz02(name: String = "EAST") {
-    val direction = name.toEnumOrNull<Direction>() ?: Direction.SOUTH
+    val direction = name.toEnumOrNull<Direction>() ?: Direction.EAST
     println("az02=${direction.az}")
   }
 
   fun printName01(az: Int = 0) {
     val direction = enumValueOrNull<Direction> {
       it.az == az
-    } ?: Direction.EAST
+    } ?: Direction.NORTH
     println("name03=${direction.name}")
   }
 
   fun printName02(ordinal: Int = 0) {
     val direction = enumValueOrNull<Direction> {
       it.ordinal == ordinal
-    } ?: Direction.WEST
+    } ?: Direction.NORTH
     println("name03=${direction.name}")
   }
 }
