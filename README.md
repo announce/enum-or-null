@@ -6,7 +6,7 @@
 ### Why enum-or-null?
 
 In Kotlin, the `valueOf()` method throws an `IllegalArgumentException` if the specified name does not match any of the enum constants defined in the class.
-This library provides handy functions to access to the constant value safely.
+This library provides a collection of handy functions to access the constant value safely.
 
 ### Install
 
@@ -34,8 +34,6 @@ implementation 'io.github.announce:enum-or-null-kt:1.x.x'
 The code typically looks like the following:
 
 ```kotlin
-package io.github.announce
-
 class Example {
   enum class Direction(val az: Int) {
     NORTH(0),

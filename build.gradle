@@ -136,7 +136,7 @@ publishing {
       pom.withXml {
         def root = asNode()
         root.appendNode('name', rootProject.name)
-        root.appendNode('description', 'Provide a enumValueOrNull function')
+        root.appendNode('description', 'Shorthand functions for safe Enum value access in Kotlin')
         root.appendNode('url', 'https://github.com/announce/enum-or-null')
         root.children().last() + pomConfig
       }
