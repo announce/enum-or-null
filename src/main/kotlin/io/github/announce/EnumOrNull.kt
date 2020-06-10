@@ -5,3 +5,6 @@ package io.github.announce
  */
 @SinceKotlin("1.1")
 inline fun <reified T : Enum<T>> enumValueOrNull(name: String) = enumValues<T>().firstOrNull { it.name == name }
+
+@SinceKotlin("1.1")
+inline fun <reified T : Enum<T>> String.toEnumOrNull(): T? = enumValues<T>().firstOrNull { it.name == this }
