@@ -17,4 +17,18 @@ class Example {
     val direction = name.toEnumOrNull<Direction>() ?: Direction.SOUTH
     println("az02=${direction.az}")
   }
+
+  fun printName01(az: Int = 0) {
+    val direction = enumValueOrNull<Direction> {
+      it.az == az
+    } ?: Direction.EAST
+    println("name03=${direction.name}")
+  }
+
+  fun printName02(ordinal: Int = 0) {
+    val direction = enumValueOrNull<Direction> {
+      it.ordinal == ordinal
+    } ?: Direction.WEST
+    println("name03=${direction.name}")
+  }
 }

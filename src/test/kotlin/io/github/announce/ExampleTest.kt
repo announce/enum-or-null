@@ -8,5 +8,7 @@ class ExampleTest {
     val example = Example()
     example.printAz01()
     example.printAz02()
+    example.printName01()
+    example.printName02()
   }
 }
