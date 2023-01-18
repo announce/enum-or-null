@@ -12,14 +12,13 @@ buildscript {
 
   dependencies {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.17"
   }
 }
 
 plugins {
   id 'maven-publish'
   id 'com.github.ben-manes.versions' version '0.20.0'
-  id 'com.jfrog.bintray' version '1.8.5'
+  id "org.jetbrains.dokka" version "1.7.20"
 }
 
 apply plugin: 'java'
@@ -42,31 +41,7 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   testImplementation 'junit:junit:4.12'
   ktlint "com.pinterest:ktlint:0.37.0"
-}
-
-dokka {
-  outputFormat = 'html'
-  outputDirectory = "$buildDir/javadoc"
-}
-javadoc.dependsOn dokka
-
-bintray {
-  user = System.getenv('BINTRAY_USER')
-  key = System.getenv('BINTRAY_KEY')
-  publications = ['mavenJava']
-
-  pkg {
-    repo = "enum-or-null"
-    name = rootProject.name
-    licenses = ['MIT']
-    vcsUrl = 'https://github.com/announce/enum-or-null.git'
-
-    version {
-      name = project.version
-      released = new Date()
-      vcsTag = "v${project.version}"
-    }
-  }
+  dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
 }
 
 task ktlint(type: JavaExec, group: "verification") {
@@ -96,50 +71,20 @@ artifacts {
   archives sourcesJar, javadocJar
 }
 
-// Create the pom configuration:
-def pomConfig = {
-  licenses {
-    license {
-      name "The MIT License"
-      url "https://opensource.org/licenses/MIT"
-      distribution "repo"
-    }
-  }
-  developers {
-    developer {
-      id "ymkjp"
-      name "Kenta Yamamoto"
-      email "ymkjp@jaist.ac.jp"
-    }
-  }
-
-  scm {
-    url "https://github.com/announce/enum-or-null"
-  }
-}
-
 publishing {
+  repositories {
+    maven {
+      name = "GitHubPackages"
+      url = uri("https://maven.pkg.github.com/announce/enum-or-null")
+      credentials {
+        username = project.findProperty("gpr.user") ?: System.getenv("OWNER_USERNAME")
+        password = project.findProperty("gpr.key") ?: System.getenv("OWNER_TOKEN")
+      }
+    }
+  }
   publications {
-    mavenJava(MavenPublication) {
-      groupId group
-      artifactId rootProject.name
-      version version
-      from components.java
-
-      artifact sourcesJar {
-        classifier = 'sources'
-      }
-      artifact javadocJar {
-        classifier = 'javadoc'
-      }
-
-      pom.withXml {
-        def root = asNode()
-        root.appendNode('name', rootProject.name)
-        root.appendNode('description', 'Shorthand functions for safe Enum value access in Kotlin')
-        root.appendNode('url', 'https://github.com/announce/enum-or-null')
-        root.children().last() + pomConfig
-      }
+    gpr(MavenPublication) {
+      from(components.java)
     }
   }
 }

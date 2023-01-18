@@ -1,8 +1,6 @@
 # enum-or-null
 
 [ ![Build Status](https://travis-ci.org/announce/enum-or-null.svg?branch=master) ](https://travis-ci.org/announce/enum-or-null)
-[ ![Download](https://api.bintray.com/packages/ymkjp/enum-or-null/enum-or-null-kt/images/download.svg) ](https://bintray.com/ymkjp/enum-or-null/enum-or-null-kt/_latestVersion)
-
 ### Why enum-or-null?
 
 In Kotlin, the `valueOf()` method throws an `IllegalArgumentException` if the specified name does not match any of the enum constants defined in the class.
@@ -10,7 +8,7 @@ This library provides a collection of handy functions to access the constant val
 
 ### Install
 
-The package is available via [jcenter](https://bintray.com/bintray/jcenter?filterByPkgName=enum-or-null-kt).
+The package is available via [maven.pkg.github.com](https://github.com/orgs/announce/packages?repo_name=enum-or-null).
 
 With Maven:
 
@@ -18,8 +16,7 @@ With Maven:
 <dependency>
   <groupId>io.github.announce</groupId>
   <artifactId>enum-or-null-kt</artifactId>
-  <version>1.x.x</version>
-  <type>pom</type>
+  <version>1.3.0</version>
 </dependency>
 ```
 
@@ -79,7 +76,5 @@ Here's how to release the library:
 
 ```shell script
 # consider using direnv
-export BINTRAY_USER="ymkjp"
-export BINTRAY_KEY="__YOUR_KEY__"
-./gradlew clean build bintrayUpload
+./gradlew clean build publish
 ```
